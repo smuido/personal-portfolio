@@ -1,7 +1,13 @@
 import HomePage from './pages/home'
+import Navbar from './structs/navbar'
 
 function App() {
-  return <HomePage />
+  return (
+    <>
+      <Navbar />
+      <HomePage />
+    </>
+  )
 }
 
 export default App

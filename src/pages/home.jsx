@@ -18,6 +18,7 @@ import excelImg from '../assets/excel.png'
 function HomePage() {
 	const personalProjects = projects.filter((item) => item?.name && item?.description && item?.techStack?.length && item?.status)
 	const currentExperience = experience.filter((item) => item?.jobTitle && item?.company && item?.location && item?.duration && item?.description)
+	const carouselCopies = 3
 	const techIcons = [
 		{ src: cImg, alt: 'C Programming Language' },
 		{ src: pythonImg, alt: 'Python Programming Language' },
@@ -35,6 +36,14 @@ function HomePage() {
 		{ name: 'Word', icon: wordImg },
 		{ name: 'Excel', icon: excelImg },
 	]
+
+	const renderCarouselGroups = (items, renderItem, keyPrefix) => (
+		Array.from({ length: carouselCopies }, (_, copyIndex) => (
+			<div className="group" aria-hidden={copyIndex > 0} key={`${keyPrefix}-group-${copyIndex}`}>
+				{items.map((item) => renderItem(item, copyIndex))}
+			</div>
+		))
+	)
 
 	const getProjectStatusClass = (status) => {
 		if (!status) return 'project-status'
@@ -73,7 +82,10 @@ function HomePage() {
 
 
 			<section className="intro">
-					<h1>Hi, I'm Smaya Guido</h1>
+					<h1 className='nameLine'>
+						<span className="namePrefix">Hi,I'm </span>
+						<span className="nameValue"> Smaya Guido</span>
+					</h1>
 					<p>Welcome to my personal portfolio website. I'm a computer engineering and political science student at Cal Poly with a passion 
 						for technological advancement and innovation, politics, and blending the two to create a positive impact on society.</p>				
 			</section>
@@ -157,20 +169,15 @@ function HomePage() {
 						</div>
 						<div className="carousel">
 							<div className="carousel-track">
-								<div className="group">
-									{techIcons.map((icon) => (
-										<div className="item" key={`tech-${icon.alt}`}>
-											<img src={icon.src} alt={icon.alt} />
+								{renderCarouselGroups(
+									techIcons,
+									(icon, copyIndex) => (
+										<div className="item" key={`tech-${copyIndex}-${icon.alt}`}>
+											<img src={icon.src} alt={copyIndex === 0 ? icon.alt : ''} />
 										</div>
-									))}
-								</div>
-								<div className="group" aria-hidden="true">
-									{techIcons.map((icon) => (
-										<div className="item" key={`tech-loop-${icon.alt}`}>
-											<img src={icon.src} alt="" />
-										</div>
-									))}
-								</div>
+									),
+									'tech'
+								)}
 							</div>
 						</div>
 					</div>
@@ -181,20 +188,15 @@ function HomePage() {
 						</div>
 						<div className="carousel">
 							<div className="carousel-track">
-								<div className="group">
-									{otherTools.map((tool) => (
-										<div className="item" key={`tool-${tool.name}`}>
-											<img src={tool.icon} alt={`${tool.name} logo`} />
+								{renderCarouselGroups(
+									otherTools,
+									(tool, copyIndex) => (
+										<div className="item" key={`tool-${copyIndex}-${tool.name}`}>
+											<img src={tool.icon} alt={copyIndex === 0 ? `${tool.name} logo` : ''} />
 										</div>
-									))}
-								</div>
-								<div className="group" aria-hidden="true">
-									{otherTools.map((tool) => (
-										<div className="item" key={`tool-loop-${tool.name}`}>
-											<img src={tool.icon} alt="" />
-										</div>
-									))}
-								</div>
+									),
+									'tool'
+								)}
 							</div>
 						</div>
 					</div>

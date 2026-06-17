@@ -27,7 +27,11 @@ body {
 .home-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 24px;
+  padding: 120px 24px 60px;
+}
+
+.home-page section {
+  scroll-margin-top: 100px;
 }
 
 .intro {
@@ -42,12 +46,29 @@ body {
 }
 
 .intro h1 {
-  font-family: 'League Spartan', sans-serif;
+  font-family: 'Jetbrains Mono', monospace;
   font-size: 3.5rem;
   font-weight: 700;
   margin: 0;
   color: var(--text);
   white-space: nowrap;
+  margin-top: 1vh;
+
+}
+
+.nameLine {
+  display: inline-flex;
+  font-family: 'JetBrains Mono', monospace;
+  gap: 0;
+}
+
+.namePrefix {
+  color: #4b5563;
+}
+
+.nameValue {
+  color: #0ea5e9;
+  margin-left: 1ch;
 }
 
 .intro p {
@@ -270,8 +291,23 @@ body {
     font-size: 1.8rem;
   }
 
-  .experience-grid {
+  .experience-grid,
+  .project-grid {
     grid-template-columns: 1fr;
+  }
+
+  .carousel-track {
+    animation-duration: 14s;
+  }
+
+  .group {
+    gap: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .item {
+    width: 56px;
+    height: 56px;
   }
 }
 
@@ -290,12 +326,17 @@ body {
   margin-bottom: 20px;
 }
 
+.carousel-panel {
+  min-width: 0;
+}
+
 .carousel-panel .section-header h2 {
   font-size: 2rem;
 }
 
 .carousel {
   width: 100%;
+  min-width: 0;
   overflow: hidden;
 }
 	
@@ -308,6 +349,7 @@ body {
   width: max-content;
   animation: scroll 10s linear infinite;
   will-change: transform;
+  --loop-distance: 0px;
 }
 
 .group {
@@ -340,7 +382,7 @@ body {
 
 @keyframes scroll {
   from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(calc(-1 * var(--loop-distance)), 0, 0); }
 }
 
 @media (max-width: 1024px) {

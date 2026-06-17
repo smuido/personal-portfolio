@@ -3,7 +3,7 @@ export const experience = [
 		jobTitle: "Team Lead for MIDAS Team",
 		company: "Cal Poly SLO - Center for Teaching, Learning, and Technology",
 		location: "San Luis Obispo, CA",
-		duration: "June 2024 - Present",
+		duration: "June 2025 - Present",
 		description: "Created and currently maintain the onboarding and orientation workflow for the MIDAS (Making Instructional Documents Accessible to Students) team, \
             a student-led team that provides accessibility support for faculty and staff at Cal Poly.",
         skills: ["Leadership", "Communication", "Project Management"]
