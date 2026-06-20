@@ -1,19 +1,22 @@
 export const experience = [
 	{
 		jobTitle: "Team Lead for MIDAS Team",
-		company: "Cal Poly SLO - Center for Teaching, Learning, and Technology",
+		company: "Cal Poly SLO",
+        dept: "Center for Teaching, Learning, and Technology",
 		location: "San Luis Obispo, CA",
 		duration: "June 2025 - Present",
-		description: "Created and currently maintain the onboarding and orientation workflow for the MIDAS (Making Instructional Documents Accessible to Students) team, \
-            a student-led team that provides accessibility support for faculty and staff at Cal Poly.",
+		description: "Built and maintain an asynchronous onboarding workflow for a 21-person team while supporting daily \
+            operations through file management, accessibility remediation, task organization, and team support.",
         skills: ["Leadership", "Communication", "Project Management"]
 	},
     {
         jobTitle: "WOW Student in Charge",
-        company: "Cal Poly SLO - New Student and Transition Programs",
+        company: "Cal Poly SLO",
+        dept: "New Student and Transition Programs",
         location: "San Luis Obispo, CA",
         duration: "September 2024",
-        description: "Responsible for overseeing the WOW (Week of Welcome) program, coordinating events and activities for new students.",
+        description: "Helped coordinate Cal Poly’s Week of Welcome program for 5,000+ incoming students by managing event \
+            communication, organizing 12+ team members to support events, and assisting WOW leaders with schedule planning.",
         skills: ["Leadership", "Communication", "Event Planning", "Organization"]
     }
 ]

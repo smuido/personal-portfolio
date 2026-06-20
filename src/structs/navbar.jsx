@@ -15,28 +15,37 @@ function Navbar() {
 		}
 	}, [])
 
-	const terminalPath = useMemo(() => {
-		if (pathname === '/') return '/'
-		return pathname.endsWith('/') ? pathname : `${pathname}/`
-	}, [pathname])
+	const pathSegments = useMemo(() => pathname.split('/').filter(Boolean), [pathname])
 
 	return (
 		<header className="site-navbar">
 			<nav className="navbar-inner" aria-label="Main navigation">
-				<a className="terminal-home" href="#top" aria-label="Go to home">
-					<span className="terminal-mark" aria-hidden="true">
+				<div className="terminal-mark" aria-label={`Current path ${pathname}`}>
+					<a className="terminal-home" href="/" aria-label="Go to home">
 						<span className="mark-tilde">~</span>
-						<span className="mark-slash">{terminalPath}</span>
-						<span className="mark-cursor" />
-					</span>
-				</a>
+					</a>
+					<span className="mark-slash" aria-hidden="true">/</span>
+					{pathSegments.map((segment, index) => (
+						<span className="terminal-segment" key={`${segment}-${index}`}>
+							<a
+								className="terminal-link"
+								href={`/${pathSegments.slice(0, index + 1).join('/')}`}
+								aria-label={`Go to ${segment}`}
+							>
+								{segment}
+							</a>
+							<span className="mark-slash" aria-hidden="true">/</span>
+						</span>
+					))}
+					<span className="mark-cursor" aria-hidden="true" />
+				</div>
 
 				<div className="navbar-links">
-					<a className="nav-btn" href="#top">About</a>
-					<a className="nav-btn" href="#experience">Posts</a>
-					<a className="nav-btn" href="#projects">Projects</a>
-					<a className="nav-btn" href="#skills">Pics</a>
-					<a className="nav-btn" href="#skills">More...</a>
+					<a className="nav-btn" href="/about">About</a>
+					<a className="nav-btn" href="/#experience">Posts</a>
+					<a className="nav-btn" href="/projects">Projects</a>
+					<a className="nav-btn" href="/#skills">Pics</a>
+					<a className="nav-btn" href="/about">More...</a>
 				</div>
 			</nav>
 		</header>

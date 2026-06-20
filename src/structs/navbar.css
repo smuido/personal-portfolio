@@ -45,6 +45,18 @@
   gap: 24px;
 }
 
+.terminal-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75vw;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  margin-left: 10vw;
+  margin-top: 1rem;
+}
+
 .terminal-home {
   display: inline-flex;
   align-items: center;
@@ -62,14 +74,27 @@
   outline-offset: 2px;
 }
 
-.terminal-mark {
+.terminal-link {
+  display: inline-flex;
+  align-items: center;
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.terminal-link:hover {
+  color: #1f2937;
+}
+
+.terminal-link:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+.terminal-segment {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.35rem;
-  line-height: 1;
-  letter-spacing: 0.01em;
 }
 
 .mark-tilde {
@@ -85,7 +110,7 @@
 .mark-cursor {
   width: 0.46em;
   height: 0.92em;
-  background: #6b7280;
+  background: #a78bfa;
   border-radius: 1px;
   animation: cursorBlink 1s steps(1, end) infinite;
 }
@@ -95,16 +120,19 @@
   display: flex;
   align-items: center;
   gap: 42px;
+  margin-right: 10vw;
+  margin-top: 1rem;
 }
 
 .nav-btn {
   text-decoration: none;
   color: #596073;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1rem;
+  font-size: 0.75vw;
   font-weight: 600;
   letter-spacing: 0.02em;
   transition: color 0.2s ease, transform 0.2s ease;
+
 }
 
 .nav-btn:hover {
@@ -139,7 +167,7 @@
   }
 
   .terminal-mark {
-    font-size: 1.4rem;
+    font-size: 0.75em;
   }
 
   .navbar-links {
@@ -149,7 +177,7 @@
   }
 
   .nav-btn {
-    font-size: 0.86rem;
+    font-size: 0.75em;
   }
 }
 

@@ -15,7 +15,7 @@ import pycharmImg from '../assets/pycharm.png'
 import wordImg from '../assets/word.png'
 import excelImg from '../assets/excel.png'
 
-function HomePage() {
+export default function HomePage() {
 	const personalProjects = projects.filter((item) => item?.name && item?.description && item?.techStack?.length && item?.status)
 	const currentExperience = experience.filter((item) => item?.jobTitle && item?.company && item?.location && item?.duration && item?.description)
 	const carouselCopies = 3
@@ -86,26 +86,31 @@ function HomePage() {
 						<span className="namePrefix">Hi,I'm </span>
 						<span className="nameValue"> Smaya Guido</span>
 					</h1>
-					<p>Welcome to my personal portfolio website. I'm a computer engineering and political science student at Cal Poly with a passion 
-						for technological advancement and innovation, politics, and blending the two to create a positive impact on society.</p>				
+					<p>Computer Engineering student at Cal Poly San Luis Obispo with a focus on web development, user-centered design, 
+						and database-backed applications. Experienced with React, HTML, CSS, and JavaScript, with additional knowledge of 
+						database design, RISC-V, and SystemVerilog. I enjoy building clean, organized systems that are both functional and easy to use.</p>				
 			</section>
 
 
-			<section className="experience">
+			<section className="experience" id="experience">
 				<div className="section-header">
 					<h2>Experience</h2>
-					<a href="#" className="view-all">View all →</a>
+					<a href="/experience" className="view-all">View all →</a>
 				</div>
 				<div className="experience-grid">
 					{currentExperience.map((exp) => (
-						<article className="experience-card" key={`${exp.jobTitle}-${exp.company}-`}>
+						<article className="experience-card" key={`${exp.jobTitle}-${exp.company}-${exp.dept}`}>
 							<div className="terminal-header">
 								<div className="terminal-dots">
 									<span className="dot red" />
 									<span className="dot yellow" />
 									<span className="dot green" />
 								</div>
-								<span className="terminal-title">{exp.company}</span>
+								<span className="terminal-title">
+									<span className="company-name">{exp.company}</span>
+									<span className="project-separator"> / </span>
+									<span className="department-status">{exp.dept}</span>
+								</span>
 								<span className="duration-badge">{exp.duration}</span>
 							</div>
 							<div className="card-content">
@@ -127,7 +132,7 @@ function HomePage() {
 			<section className="personal-projects">
 				<div className="section-header">
 					<h2>Personal Projects</h2>
-					<a href="#" className="view-all">View all →</a>
+					<a href="/projects" className="view-all">View all →</a>
 				</div>
 				<div className="project-grid">
 					{personalProjects.map((project) => (
@@ -205,5 +210,3 @@ function HomePage() {
 		</main>
 	);
 }
-
-export default HomePage

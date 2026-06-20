@@ -1,0 +1,194 @@
+.projects-page {
+	padding: 7rem 10vw 4rem;
+	display: grid;
+	gap: 2.5rem;
+}
+
+.projects-page-header {
+	display: grid;
+	gap: 0.5rem;
+	max-width: 46rem;
+}
+
+.projects-page-header h1 {
+	margin: 0;
+	font-family: 'League Spartan', sans-serif;
+	font-size: clamp(2.5rem, 4vw, 4rem);
+	font-weight: 700;
+	color: var(--text);
+}
+
+.projects-page-header p {
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.6;
+	color: #555;
+}
+
+.projects-page-projects {
+	margin-top: 0;
+}
+
+.projects-page .project-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 24px;
+	margin-bottom: 0;
+}
+
+.projects-page .project-card {
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	overflow: hidden;
+	background: var(--card-bg);
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.projects-page .project-card:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+	transform: translateY(-2px);
+}
+
+.projects-page .terminal-header {
+	background: var(--terminal-bg);
+	color: var(--terminal-text);
+	padding: 30px 16px 12px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.85rem;
+	gap: 12px;
+	position: relative;
+}
+
+.projects-page .terminal-dots {
+	display: flex;
+	gap: 6px;
+	position: absolute;
+	top: 10px;
+	left: 16px;
+}
+
+.projects-page .dot {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+.projects-page .dot.red {
+	background: #ff5f56;
+}
+
+.projects-page .dot.yellow {
+	background: #ffbd2e;
+}
+
+.projects-page .dot.green {
+	background: #27c93f;
+}
+
+.projects-page .terminal-title {
+	font-weight: 500;
+	font-size: 0.9rem;
+	color: #a78bfa;
+	flex: 1;
+}
+
+.projects-page .project-name {
+	color: #f3f4f6;
+	font-family: 'JetBrains Mono', monospace;
+}
+
+.projects-page .project-separator {
+	color: #9ca3af;
+}
+
+.projects-page .project-status {
+	color: #22c55e;
+	font-weight: 700;
+}
+
+.projects-page .project-status.active {
+	color: #22c55e;
+}
+
+.projects-page .project-status.completed {
+	color: #60a5fa;
+}
+
+.projects-page .project-status.paused {
+	color: #f59e0b;
+}
+
+.projects-page .duration-badge {
+	color: #9ca3af;
+	font-size: 0.75rem;
+	white-space: nowrap;
+}
+
+.projects-page .card-content {
+	padding: 24px 20px var(--skills-bottom-offset);
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.projects-page .card-content h3 {
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin-bottom: 8px;
+	color: var(--text);
+}
+
+.projects-page .description {
+	font-size: 0.95rem;
+	color: #555;
+	line-height: 1.6;
+	margin-bottom: 16px;
+}
+
+.projects-page .link {
+	font-size: 0.9rem;
+	color: #666;
+	margin-bottom: 12px;
+	word-break: break-word;
+}
+
+.projects-page .skills-tags {
+	display: flex;
+	gap: 8px;
+	margin-top: auto;
+	flex-wrap: wrap;
+}
+
+.projects-page .skill-tag {
+	display: inline-block;
+	background: #f0f0f0;
+	color: #555;
+	padding: 6px 10px;
+	border-radius: 6px;
+	font-size: 0.8rem;
+	font-weight: 500;
+	border: 1px solid #e0e0e0;
+	transition: background 0.2s ease;
+}
+
+.projects-page .skill-tag:hover {
+	background: #e8e8e8;
+}
+
+@media (max-width: 768px) {
+	.projects-page {
+		padding: 6.5rem 1rem 3rem;
+	}
+
+	.projects-page .project-grid {
+		grid-template-columns: 1fr;
+	}
+}

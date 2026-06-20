@@ -67,7 +67,7 @@ body {
 }
 
 .nameValue {
-  color: #0ea5e9;
+  color: #a78bfa;
   margin-left: 1ch;
 }
 
@@ -214,6 +214,16 @@ body {
 
 .project-status.paused {
   color: #f59e0b;
+}
+
+.company-name {
+  color: #f3f4f6;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.department-status {
+  color: #55a1ec;
+  font-weight: 500;
 }
 
 .duration-badge {
