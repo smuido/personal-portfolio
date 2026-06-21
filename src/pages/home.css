@@ -36,6 +36,7 @@ body {
 
 .intro {
   margin-bottom: 80px;
+  margin-top: 10px;
 }
 
 .intro-copy {
@@ -142,6 +143,19 @@ body {
   transform: translateY(-2px);
 }
 
+.project-card-link {
+  cursor: pointer;
+}
+
+.project-card-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.project-card-link:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
 .terminal-header {
   background: var(--terminal-bg);
   color: var(--terminal-text);
@@ -230,6 +244,27 @@ body {
   color: #9ca3af;
   font-size: 0.75rem;
   white-space: nowrap;
+}
+
+.repo-link {
+  color: #93c5fd;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  align-self: flex-start;
+  transition: color 0.2s ease;
+}
+
+.repo-link:hover {
+  color: #dbeafe;
+  text-decoration: underline;
+}
+
+.repo-link.disabled {
+  color: #6b7280;
+  pointer-events: none;
+  text-decoration: none;
 }
 
 .card-content {

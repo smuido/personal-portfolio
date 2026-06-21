@@ -5,6 +5,7 @@
   right: 0;
   z-index: 1000;
   isolation: isolate;
+  transform: translateZ(0);
 }
 
 .site-navbar::before {
@@ -50,7 +51,7 @@
   align-items: center;
   gap: 3px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75vw;
+  font-size: clamp(0.85rem, 0.35vw + 0.75rem, 1rem);
   line-height: 1;
   letter-spacing: 0.01em;
   margin-left: 10vw;
@@ -128,7 +129,7 @@
   text-decoration: none;
   color: #596073;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75vw;
+  font-size: clamp(0.85rem, 0.35vw + 0.75rem, 1rem);
   font-weight: 600;
   letter-spacing: 0.02em;
   transition: color 0.2s ease, transform 0.2s ease;
@@ -143,6 +144,26 @@
 .nav-btn:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
+}
+
+/* Overlay-open state: white text */
+.navbar-overlay-open .terminal-home,
+.navbar-overlay-open .mark-tilde,
+.navbar-overlay-open .terminal-link,
+.navbar-overlay-open .mark-slash,
+.navbar-overlay-open .mark-tilde,
+.navbar-overlay-open .nav-btn {
+  color: rgba(0, 0, 0, 0.9);
+  transition: color 0.2s ease;
+}
+
+.navbar-overlay-open .mark-cursor {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-overlay-open .nav-btn:hover,
+.navbar-overlay-open .terminal-link:hover {
+  color: #000000;
 }
 
 @keyframes cursorBlink {
@@ -167,7 +188,7 @@
   }
 
   .terminal-mark {
-    font-size: 0.75em;
+    font-size: 0.8rem;
   }
 
   .navbar-links {
@@ -177,7 +198,9 @@
   }
 
   .nav-btn {
-    font-size: 0.75em;
+    font-size: 0.8rem;
   }
+
+    
 }
 

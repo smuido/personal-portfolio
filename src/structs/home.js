@@ -23,19 +23,36 @@ export const experience = [
 
 export const projects = [
 	{
+        slug: "cp-portfolio",
 		name: "Cal Poly Portfolio Website",
-		description: "A personal website built using React. It serves as a portfolio to showcase my projects, skills, and experience.",
-		link: "",
+		cardDesc: "This is my personal website built to showcase my projects, experience, and skills. It is designed to be a clean and modern portfolio that highlights my work and provides an easy way for visitors to learn more about me. It also gives me a reason to make something deployable to the Unix servers at Cal Poly, which is a fun challenge in itself.",
+        description: "A personal portfolio website built with React, showcasing projects and experience in a clean, modern design.",
+        highlights: [
+            "Built a consistent card system across the homepage and dedicated project views.",
+            "Uses lightweight client-side navigation for smooth page changes without a router dependency.",
+            "Designed to scale as more project stories are added later.",
+            "Deployed on Cal Poly's Unix servers, demonstrating practical deployment skills in a unique environment."
+        ],
+        link: "https://github.com/smuido/cp-portfolio",
 		techStack: ["React", "JavaScript", "HTML", "CSS"],
-        status: "In Progress"
+        status: "In Progress",
+        date: "June 2025"
 	},
 	{
+        slug: "mustang-ball-website",
 		name: "Mustang Ball Website",
-		description: "A website to showcase and give information for the Mustang Ball, an annual event at Cal Poly. \
+		cardDesc: "A website to showcase and give information for the Mustang Ball, an annual event at Cal Poly. \
 			The website includes information about the event, an email form, links to ticket purchasing, and a gallery of past events.",
-		link: "",
+        description: "A website for the Mustang Ball event at Cal Poly, providing event details, ticketing information, and a gallery of past events.",
+        highlights: [
+            "Focused on guiding visitors quickly to event details and ticketing links.",
+            "Uses the same React and CSS stack as the portfolio site for easy maintenance.",
+            "Built to support an information-rich event page without feeling cluttered.",
+        ],
+        link: "https://github.com/smuido/mustang-ball-website",
 		techStack: ["React", "JavaScript", "HTML", "CSS"],
-        status: "In Progress"
+        status: "In Progress",
+        date: "April 2025"
 	},
 
 ]

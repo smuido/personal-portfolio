@@ -1,7 +1,7 @@
 import './projects.css'
 import { projects } from '../structs/home'
 
-const personalProjects = projects.filter((item) => item?.name && item?.description && item?.techStack?.length && item?.status)
+const personalProjects = projects.filter((item) => item?.slug && item?.name && item?.description && item?.techStack?.length && item?.status)
 
 const getProjectStatusClass = (status) => {
     if (!status) return 'project-status'
@@ -14,7 +14,20 @@ const getProjectStatusClass = (status) => {
     return 'project-status'
 }
 
-export default function Projects() {
+export default function Projects({ onOpenProject }) {
+    const openProject = (slug) => {
+        if (!slug || !onOpenProject) return
+
+        onOpenProject(slug)
+    }
+
+    const handleProjectKeyDown = (slug) => (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault()
+            openProject(slug)
+        }
+    }
+
     return (
         <main className="projects-page">
             <section className="projects-page-header">
@@ -25,7 +38,15 @@ export default function Projects() {
             <section className="personal-projects projects-page-projects">
                 <div className="project-grid">
                     {personalProjects.map((project) => (
-                        <article className="project-card" key={project.name}>
+                        <article
+                            className="project-card project-card-link"
+                            key={project.name}
+                            role="link"
+                            tabIndex={0}
+                            onClick={() => openProject(project.slug)}
+                            onKeyDown={handleProjectKeyDown(project.slug)}
+                            aria-label={`Open details for ${project.name}`}
+                        >
                             <div className="terminal-header">
                                 <div className="terminal-dots">
                                     <span className="dot red" />
@@ -37,12 +58,23 @@ export default function Projects() {
                                     <span className="project-separator"> / </span>
                                     <span className={getProjectStatusClass(project.status)}>{project.status}</span>
                                 </span>
-                                <span className="duration-badge"></span>
+                                {project.link ? (
+                                    <a
+                                        className="repo-link"
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noreferrer noopener"
+                                        onClick={(event) => event.stopPropagation()}
+                                    >
+                                        GitHub
+                                    </a>
+                                ) : (
+                                    <span className="repo-link disabled">GitHub</span>
+                                )}
                             </div>
                             <div className="card-content">
                                 <h3>{project.name}</h3>
                                 <p className="description">{project.description}</p>
-                                <p className="link">{project.link}</p>
                                 <div className="skills-tags">
                                     {project.techStack.map((tech) => (
                                         <span className="skill-tag" key={tech}>{tech}</span>
