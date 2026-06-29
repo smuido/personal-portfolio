@@ -6,11 +6,11 @@ import ExperiencePage from './pages/experience'
 import ProjectsPage from './pages/projects'
 import ProjectDetailPage from './pages/project-detail'
 import Navbar from './structs/navbar'
-import { projects } from './structs/home'
+import { experience, projects, volunteerExp } from './structs/home'
 
 function App() {
   const [pathname, setPathname] = useState(window.location.pathname)
-  const [activeProject, setActiveProject] = useState(null)
+  const [activeDetail, setActiveDetail] = useState(null)
 
   useEffect(() => {
     const handleLocationChange = () => setPathname(window.location.pathname)
@@ -34,11 +34,20 @@ function App() {
     const project = projects.find((item) => item.slug === slug)
     if (!project) return
 
-    setActiveProject(project)
+    setActiveDetail({ type: 'project', item: project })
+  }
+
+  const openExperience = (item, type = 'work') => {
+    if (!item) return
+
+    const source = type === 'volunteer' ? volunteerExp : experience
+    const matchedItem = source.find((entry) => entry === item)
+
+    setActiveDetail({ type, item: matchedItem || item })
   }
 
   const closeProject = () => {
-    setActiveProject(null)
+    setActiveDetail(null)
   }
 
   function currPath() {
@@ -46,23 +55,23 @@ function App() {
       return <AboutPage />
     }
     if (pathname === '/experience') {
-      return <ExperiencePage />
+      return <ExperiencePage onOpenExperience={openExperience} />
     }
     if (pathname === '/projects') {
       return <ProjectsPage onOpenProject={openProject} />
     }
-    return <HomePage onOpenProject={openProject} />
+    return <HomePage onOpenProject={openProject} onOpenExperience={openExperience} />
   }
   const currentPage = currPath()
 
   return (
     <>
-      <Navbar pathname={pathname} onNavigate={navigateTo} overlayOpen={!!activeProject} />
+      <Navbar pathname={pathname} onNavigate={navigateTo} overlayOpen={!!activeDetail} />
       <div className="app-route-shell">
         {currentPage}
       </div>
-      {activeProject ? (
-        <ProjectDetailPage project={activeProject} onClose={closeProject} />
+      {activeDetail ? (
+        <ProjectDetailPage detail={activeDetail} onClose={closeProject} />
       ) : null}
     </>
   )

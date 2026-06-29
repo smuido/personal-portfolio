@@ -1,18 +1,38 @@
 import './experience.css'
 import { education, experience, volunteerExp } from '../structs/home'
 
-export default function ExperiencePage() {
+export default function ExperiencePage({ onOpenExperience }) {
+	const openExperience = (item, type) => {
+		if (!item || !onOpenExperience) return
+
+		onOpenExperience(item, type)
+	}
+
+	const handleExperienceKeyDown = (item, type) => (event) => {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault()
+			openExperience(item, type)
+		}
+	}
+
 	return (
 		<main className="experience-page">
 			<section className="experience-page-section">
 				<div className="experience-page-header">
-					<h1>Work Experience</h1>
-					<p>Professional roles presented with the same card style as the homepage projects.</p>
+					<h2>Work Experience</h2>
 				</div>
 
 				<div className="experience-page-grid">
 					{experience.map((entry) => (
-						<article className="experience-card" key={`${entry.jobTitle}-${entry.company}-${entry.duration}`}>
+						<article
+							className="experience-card experience-card-link"
+							key={`${entry.jobTitle}-${entry.company}-${entry.duration}`}
+							role="button"
+							tabIndex={0}
+							onClick={() => openExperience(entry, 'work')}
+							onKeyDown={handleExperienceKeyDown(entry, 'work')}
+							aria-label={`Open details for ${entry.jobTitle} at ${entry.company}`}
+						>
 							<div className="terminal-header">
 								<div className="terminal-dots">
 									<span className="dot red" />
@@ -43,12 +63,19 @@ export default function ExperiencePage() {
 
 			<section className="experience-page-section">
 				<div className="experience-page-header">
-					<h2>Volunteer Experience</h2>
-					<p>Campus and community leadership shown in the same card layout.</p>
+					<h2>Volunteer & Leadership Experience</h2>
 				</div>
 				<div className="experience-page-grid">
 					{volunteerExp.map((entry) => (
-						<article className="experience-card" key={`${entry.title}-${entry.org}-${entry.duration}`}>
+						<article
+							className="experience-card experience-card-link"
+							key={`${entry.title}-${entry.org}-${entry.duration}`}
+							role="button"
+							tabIndex={0}
+							onClick={() => openExperience(entry, 'volunteer')}
+							onKeyDown={handleExperienceKeyDown(entry, 'volunteer')}
+							aria-label={`Open details for ${entry.title} at ${entry.org}`}
+						>
 							<div className="terminal-header">
 								<div className="terminal-dots">
 									<span className="dot red" />
@@ -57,8 +84,6 @@ export default function ExperiencePage() {
 								</div>
 								<span className="terminal-title">
 									<span className="company-name">{entry.org}</span>
-									<span className="project-separator"> / </span>
-									<span className="department-status">Volunteer</span>
 								</span>
 								<span className="duration-badge">{entry.duration}</span>
 							</div>
@@ -75,7 +100,6 @@ export default function ExperiencePage() {
 			<section className="experience-page-section">
 				<div className="experience-page-header">
 					<h2>Education</h2>
-					<p>Academic background displayed in the same card style.</p>
 				</div>
 				<div className="experience-page-grid education-grid">
 					{education.map((entry) => (
@@ -96,7 +120,7 @@ export default function ExperiencePage() {
 							<div className="card-content">
 								<h3>{entry.degree}</h3>
 								<p className="location">{entry.name}</p>
-								<p className="description">Expected graduation: {entry.gradYear}</p>
+								<p className="description">Concentrating in {entry.concentration}</p>
 							</div>
 						</article>
 					))}

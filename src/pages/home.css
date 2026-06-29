@@ -147,6 +147,15 @@ body {
   cursor: pointer;
 }
 
+.experience-card-link {
+  cursor: pointer;
+}
+
+.experience-card-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .project-card-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;

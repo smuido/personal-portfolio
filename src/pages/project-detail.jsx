@@ -1,7 +1,20 @@
 import { useEffect } from 'react'
 import './project-detail.css'
 
-export default function ProjectDetailPage({ project, onClose }) {
+export default function ProjectDetailPage({ detail, onClose }) {
+	const item = detail?.item
+	const kind = detail?.type || 'project'
+	const isProject = kind === 'project'
+	const title = isProject ? item?.name : item?.jobTitle || item?.title || item?.name || 'Details'
+	const subtitle = isProject ? item?.status : item?.company || item?.org || item?.dept || ''
+	const headerDate = item?.date || item?.duration || ''
+	const description = isProject ? item?.cardDesc || item?.description : item?.description
+	const highlights = item?.highlights || []
+	const tags = isProject ? item?.techStack || [] : item?.skills || []
+	const metaItems = []
+
+	if (!isProject && item?.dept) metaItems.push(item.dept)
+	if (item?.location) metaItems.push(item.location)
 	useEffect(() => {
 		const handleKeyDown = (event) => {
 			if (event.key === 'Escape') {
@@ -18,7 +31,7 @@ export default function ProjectDetailPage({ project, onClose }) {
 		}
 	}, [onClose])
 
-	if (!project) return null
+	if (!item) return null
 
 	return (
 		<div className="project-overlay" role="presentation" onClick={onClose}>
@@ -26,7 +39,7 @@ export default function ProjectDetailPage({ project, onClose }) {
 				className="project-detail-modal"
 				role="dialog"
 				aria-modal="true"
-				aria-label={`${project.name} details`}
+				aria-label={`${title} details`}
 				onClick={(event) => event.stopPropagation()}
 			>
 				<div className="terminal-header detail-terminal-header">
@@ -36,46 +49,52 @@ export default function ProjectDetailPage({ project, onClose }) {
 						<span className="dot green" />
 					</div>
 					<span className="terminal-title">
-						<span className="project-name">{project.name}</span>
+						<span className="project-name">{title}</span>
 						<span className="project-separator"> / </span>
-						<span className="project-status">{project.status}</span>
+						<span className="project-status">{subtitle}</span>
 					</span>
+					{headerDate && <span className="duration-badge">{headerDate}</span>}
 				</div>
 
 				<div className="detail-body">
 					<div className="detail-meta">
-						{project.date && <span className="detail-date">{project.date}</span>}
-						{project.link && (
-							<a className="detail-meta-link" href={project.link} target="_blank" rel="noreferrer noopener">
+						{metaItems.map((metaItem) => (
+							<span className="detail-date" key={metaItem}>{metaItem}</span>
+						))}
+						{isProject && item?.link && (
+							<a className="detail-meta-link" href={item.link} target="_blank" rel="noreferrer noopener">
 								GitHub ↗
 							</a>
 						)}
-						{project.liveLink && (
-							<a className="detail-meta-link" href={project.liveLink} target="_blank" rel="noreferrer noopener">
+						{isProject && item?.liveLink && (
+							<a className="detail-meta-link" href={item.liveLink} target="_blank" rel="noreferrer noopener">
 								Live Demo ↗
 							</a>
 						)}
 					</div>
 
-					<div className="detail-tags">
-						{project.techStack.map((tech) => (
-							<span className="detail-tag" key={tech}>{tech.toLowerCase()}</span>
-						))}
-					</div>
+					{tags.length > 0 && (
+						<div className="detail-tags">
+							{tags.map((tag) => (
+								<span className="detail-tag" key={tag}>{tag.toLowerCase()}</span>
+							))}
+						</div>
+					)}
 
 					<div className="detail-article">
-						<p className="detail-desc">{project.cardDesc}</p>
+						<p className="detail-desc">{description}</p>
 
-						{project.highlights?.length > 0 && (
+						{highlights.length > 0 && (
 							<>
 								<h2>Highlights</h2>
 								<ul className="detail-highlight-list">
-									{project.highlights.map((highlight) => (
+									{highlights.map((highlight) => (
 										<li key={highlight}>{highlight}</li>
 									))}
 								</ul>
 							</>
 						)}
+						
 					</div>
 				</div>
 			</article>

@@ -15,7 +15,7 @@ import pycharmImg from '../assets/pycharm.png'
 import wordImg from '../assets/word.png'
 import excelImg from '../assets/excel.png'
 
-export default function HomePage({ onOpenProject }) {
+export default function HomePage({ onOpenProject, onOpenExperience }) {
 	const personalProjects = projects.filter((item) => item?.name && item?.description && item?.techStack?.length && item?.status)
 	const currentExperience = experience.filter((item) => item?.jobTitle && item?.company && item?.location && item?.duration && item?.description)
 	const carouselCopies = 3
@@ -69,6 +69,19 @@ export default function HomePage({ onOpenProject }) {
 		}
 	}
 
+	const openExperience = (item) => {
+		if (!item || !onOpenExperience) return
+
+		onOpenExperience(item, 'work')
+	}
+
+	const handleExperienceKeyDown = (item) => (event) => {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault()
+			openExperience(item)
+		}
+	}
+
 	useEffect(() => {
 		const updateLoopDistances = () => {
 			const tracks = document.querySelectorAll('.carousel-track')
@@ -112,7 +125,15 @@ export default function HomePage({ onOpenProject }) {
 				</div>
 				<div className="experience-grid">
 					{currentExperience.map((exp) => (
-						<article className="experience-card" key={`${exp.jobTitle}-${exp.company}-${exp.dept}`}>
+						<article
+							className="experience-card experience-card-link"
+							key={`${exp.jobTitle}-${exp.company}-${exp.dept}`}
+							role="button"
+							tabIndex={0}
+							onClick={() => openExperience(exp)}
+							onKeyDown={handleExperienceKeyDown(exp)}
+							aria-label={`Open details for ${exp.jobTitle} at ${exp.company}`}
+						>
 							<div className="terminal-header">
 								<div className="terminal-dots">
 									<span className="dot red" />

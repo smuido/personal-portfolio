@@ -1,4 +1,5 @@
 import './navbar.css'
+import resume from '../structs/Guido, Smaya Resume.pdf'
 
 function Navbar({ pathname, onNavigate, overlayOpen }) {
 	const pathSegments = pathname.split('/').filter(Boolean)
@@ -34,9 +35,9 @@ function Navbar({ pathname, onNavigate, overlayOpen }) {
 
 				<div className="navbar-links">
 					<a className="nav-btn" href="/about" onClick={handleNavigate('/about')}>About</a>
-					<a className="nav-btn" href="/#experience">Experience</a>
+					<a className="nav-btn" href="/#experience" onClick={handleNavigate('/experience')}>Experience</a>
 					<a className="nav-btn" href="/projects" onClick={handleNavigate('/projects')}>Projects</a>
-					<a className="nav-btn" href="/resume" onClick={handleNavigate('/resume')}>Resume</a>
+					<a className="nav-btn" href={resume} target="_blank" rel="noopener noreferrer">Resume</a>
 				</div>
 			</nav>
 		</header>
