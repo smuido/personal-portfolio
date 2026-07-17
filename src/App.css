@@ -1,4 +1,11 @@
+.app-shell {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
 .app-route-shell {
+  flex: 1 0 auto;
   animation: route-enter 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 

@@ -6,6 +6,7 @@ import ExperiencePage from './pages/experience'
 import ProjectsPage from './pages/projects'
 import ProjectDetailPage from './pages/project-detail'
 import Navbar from './structs/navbar'
+import Footer from './structs/footer'
 import { experience, projects, volunteerExp } from './structs/home'
 
 function App() {
@@ -65,15 +66,16 @@ function App() {
   const currentPage = currPath()
 
   return (
-    <>
+    <div className="app-shell">
       <Navbar pathname={pathname} onNavigate={navigateTo} overlayOpen={!!activeDetail} />
       <div className="app-route-shell">
         {currentPage}
       </div>
+      <Footer />
       {activeDetail ? (
         <ProjectDetailPage detail={activeDetail} onClose={closeProject} />
       ) : null}
-    </>
+    </div>
   )
 }
 

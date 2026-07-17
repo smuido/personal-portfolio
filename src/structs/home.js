@@ -44,9 +44,9 @@ export const projects = [
             "Deployed on Cal Poly's Unix servers, demonstrating practical deployment skills in a unique environment."
         ],
         link: "https://github.com/smuido/cp-portfolio",
-		techStack: ["React", "JavaScript", "HTML", "CSS"],
+		techStack: ["React", "JavaScript", "HTML", "CSS", "Github Pages", "Node.js"],
         status: "In Progress",
-        date: "June 2025"
+        date: "June 2026"
 	},
 	{
         slug: "mustang-ball-website",
@@ -62,7 +62,7 @@ export const projects = [
         link: "https://github.com/smuido/mustang-ball-website",
 		techStack: ["React", "JavaScript", "HTML", "CSS"],
         status: "In Progress",
-        date: "April 2025"
+        date: "April 2026"
 	},
 
 ]
@@ -77,7 +77,6 @@ export const volunteerExp = [
         highlights: [
             "Organized and led weekly officer board meetings and ensured effective communication and coordination among officers, performing biweekly check-ins.",
             "Performed check-ins with officers to ensure effective communication and coordination.",
-            "Managed the competition team as acting Competition Coordinator, ensuring proper lodging arrangements, transportation, and scheduling for competitions.",
             "Attended and represented the club at monthly Club Sports Council meetings, advocating for the club's interests and needs.",
         ]
     },
