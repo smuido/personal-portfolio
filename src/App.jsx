@@ -9,12 +9,33 @@ import Navbar from './structs/navbar'
 import Footer from './structs/footer'
 import { experience, projects, volunteerExp } from './structs/home'
 
+const APP_BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
+
+const normalizeAppPath = (browserPath) => {
+  if (!browserPath) return '/'
+
+  const stripped = APP_BASE && browserPath.startsWith(APP_BASE)
+    ? browserPath.slice(APP_BASE.length)
+    : browserPath
+
+  if (!stripped || stripped === '/') return '/'
+
+  return stripped.startsWith('/') ? stripped : `/${stripped}`
+}
+
+const toBrowserPath = (appPath) => {
+  const normalizedPath = appPath?.startsWith('/') ? appPath : `/${appPath || ''}`
+  const joinedPath = `${APP_BASE}${normalizedPath}`
+
+  return joinedPath.replace(/\/\/{2,}/g, '/')
+}
+
 function App() {
-  const [pathname, setPathname] = useState(window.location.pathname)
+  const [pathname, setPathname] = useState(() => normalizeAppPath(window.location.pathname))
   const [activeDetail, setActiveDetail] = useState(null)
 
   useEffect(() => {
-    const handleLocationChange = () => setPathname(window.location.pathname)
+    const handleLocationChange = () => setPathname(normalizeAppPath(window.location.pathname))
 
     window.addEventListener('popstate', handleLocationChange)
 
@@ -24,10 +45,13 @@ function App() {
   }, [])
 
   const navigateTo = (nextPath) => {
-    if (nextPath === window.location.pathname) return
+    const targetAppPath = nextPath?.startsWith('/') ? nextPath : `/${nextPath || ''}`
+    const targetBrowserPath = toBrowserPath(targetAppPath)
 
-    window.history.pushState({}, '', nextPath)
-    setPathname(nextPath)
+    if (targetBrowserPath === window.location.pathname) return
+
+    window.history.pushState({}, '', targetBrowserPath)
+    setPathname(targetAppPath)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -61,7 +85,7 @@ function App() {
     if (pathname === '/projects') {
       return <ProjectsPage onOpenProject={openProject} />
     }
-    return <HomePage onOpenProject={openProject} onOpenExperience={openExperience} />
+    return <HomePage onOpenProject={openProject} onOpenExperience={openExperience} onNavigate={navigateTo} />
   }
   const currentPage = currPath()
 

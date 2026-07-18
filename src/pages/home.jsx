@@ -15,7 +15,7 @@ import pycharmImg from '../assets/pycharm.png'
 import wordImg from '../assets/word.png'
 import excelImg from '../assets/excel.png'
 
-export default function HomePage({ onOpenProject, onOpenExperience }) {
+export default function HomePage({ onOpenProject, onOpenExperience, onNavigate }) {
 	const personalProjects = projects.filter((item) => item?.name && item?.description && item?.techStack?.length && item?.status)
 	const currentExperience = experience.filter((item) => item?.jobTitle && item?.company && item?.location && item?.duration && item?.description)
 	const carouselCopies = 3
@@ -82,6 +82,11 @@ export default function HomePage({ onOpenProject, onOpenExperience }) {
 		}
 	}
 
+	const handleViewAllClick = (event) => {
+		event.preventDefault()
+		if (onNavigate) onNavigate('/experience')
+	}
+
 	useEffect(() => {
 		const updateLoopDistances = () => {
 			const tracks = document.querySelectorAll('.carousel-track')
@@ -121,7 +126,7 @@ export default function HomePage({ onOpenProject, onOpenExperience }) {
 			<section className="experience" id="experience">
 				<div className="section-header">
 					<h2>Experience</h2>
-					<a href="/experience" className="view-all">View all →</a>
+					<a href={import.meta.env.BASE_URL.replace(/\/$/, '') + '/experience'} onClick={handleViewAllClick} className="view-all">View all →</a>
 				</div>
 				<div className="experience-grid">
 					{currentExperience.map((exp) => (
