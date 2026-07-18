@@ -2,7 +2,7 @@ import './about.css'
 import githubLogo from '../assets/github.svg'
 import linkedinLogo from '../assets/linkedin.svg'
 import instagramLogo from '../assets/instagram.svg'
-import hobbiesImage from '../assets/hobbies.jpg'
+import hobbiesImage from '../assets/hobbies.JPG'
 import aboutImage from '../assets/abt-me.jpg'
 
 import { aboutIntro, aboutParagraphs, careerDesiresParagraphs, hobbiesParagraphs } from '../structs/about'
