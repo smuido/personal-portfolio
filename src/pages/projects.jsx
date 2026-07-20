@@ -1,15 +1,14 @@
 import './projects.css'
-import { projects } from '../structs/home'
+import { projects } from '../structs/info'
 
-const personalProjects = projects.filter((item) => item?.slug && item?.name && item?.description && item?.techStack?.length && item?.status)
+const allProjects = projects
 
 const getProjectStatusClass = (status) => {
     if (!status) return 'project-status'
 
     const normalizedStatus = status.toLowerCase()
-    if (normalizedStatus === 'active') return 'project-status active'
-    if (normalizedStatus === 'completed') return 'project-status completed'
-    if (normalizedStatus === 'paused') return 'project-status paused'
+    if (normalizedStatus.includes('progress') || normalizedStatus === 'active') return 'project-status in-progress'
+    if (normalizedStatus.includes('complete') || normalizedStatus === 'done') return 'project-status completed'
 
     return 'project-status'
 }
@@ -37,7 +36,7 @@ export default function Projects({ onOpenProject }) {
 
             <section className="personal-projects projects-page-projects">
                 <div className="project-grid">
-                    {personalProjects.map((project) => (
+                    {allProjects.map((project) => (
                         <article
                             className="project-card project-card-link"
                             key={project.name}

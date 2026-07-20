@@ -33,7 +33,7 @@ export const experience = [
 
 export const projects = [
 	{
-        slug: "cp-portfolio",
+        slug: "portfolio",
 		name: "Cal Poly Portfolio Website",
 		cardDesc: "This is my personal website built to showcase my projects, experience, and skills. It is designed to be a clean and modern portfolio that highlights my work and provides an easy way for visitors to learn more about me. It also gives me a reason to make something deployable to the Unix servers at Cal Poly, which is a fun challenge in itself.",
         description: "A personal portfolio website built with React, showcasing projects and experience in a clean, modern design.",
@@ -41,11 +41,11 @@ export const projects = [
             "Built a consistent card system across the homepage and dedicated project views.",
             "Uses lightweight client-side navigation for smooth page changes without a router dependency.",
             "Designed to scale with me and my career.",
-            "Deployed on Cal Poly's Unix servers, demonstrating practical deployment skills in a unique environment."
+            "Deployed the site with Github Pages and a custom domain name."
         ],
         link: "https://github.com/smuido/cp-portfolio",
 		techStack: ["React", "JavaScript", "HTML", "CSS", "Github Pages", "Node.js"],
-        status: "In Progress",
+        status: "Complete",
         date: "June 2026"
 	},
 	{
@@ -64,6 +64,22 @@ export const projects = [
         status: "In Progress",
         date: "April 2026"
 	},
+    {
+        slug: "calendar-pi",
+        name: "Calendar Pi",
+        cardDesc: "An application interacting with the Google Calendar API to pull calendar events and display them in a user-friendly interface. Made to be deployed to a local Raspberry Pi and connected to a monitor.",
+        description: "An application interacting with the Google Calendar API to pull calendar events and display them in a user-friendly interface. Made to be deployed to a local Raspberry Pi and connected to a monitor.",
+        highlights: [
+            "Interacts with the Google Calendar API to fetch and display events.",
+            "UI designed and implemented through a React frontend.",
+            "Provides a user-friendly interface for managing calendar events.",
+            "Custom calendar designs for different views and layouts."
+        ],
+        link: "https://github.com/smuido/calendar-pi",
+        techStack: ["React", "JavaScript", "HTML", "CSS", "Node.js"],
+        status: "In Progress",
+        date: "July 2026"
+    }
 
 ]
 

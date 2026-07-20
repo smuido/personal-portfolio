@@ -227,16 +227,12 @@ body {
   font-weight: 700;
 }
 
-.project-status.active {
-  color: #22c55e;
+.project-status.in-progress {
+  color: #f59e0b;
 }
 
 .project-status.completed {
-  color: #60a5fa;
-}
-
-.project-status.paused {
-  color: #f59e0b;
+  color: #22c55e;
 }
 
 .company-name {

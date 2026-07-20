@@ -7,7 +7,7 @@ import ProjectsPage from './pages/projects'
 import ProjectDetailPage from './pages/project-detail'
 import Navbar from './structs/navbar'
 import Footer from './structs/footer'
-import { experience, projects, volunteerExp } from './structs/home'
+import { experience, projects, volunteerExp } from './structs/info'
 
 const APP_BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
 

@@ -1,5 +1,5 @@
 import './experience.css'
-import { education, experience, volunteerExp } from '../structs/home'
+import { education, experience, volunteerExp } from '../structs/info'
 
 export default function ExperiencePage({ onOpenExperience }) {
 	const openExperience = (item, type) => {

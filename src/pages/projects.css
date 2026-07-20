@@ -127,16 +127,12 @@
 	font-weight: 700;
 }
 
-.projects-page .project-status.active {
-	color: #22c55e;
+.projects-page .project-status.in-progress {
+	color: #f59e0b;
 }
 
 .projects-page .project-status.completed {
-	color: #60a5fa;
-}
-
-.projects-page .project-status.paused {
-	color: #f59e0b;
+	color: #22c55e;
 }
 
 .projects-page .duration-badge {

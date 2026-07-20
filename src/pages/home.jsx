@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import './home.css'
-import { experience, projects } from '../structs/home'
+import { experience, projects } from '../structs/info'
 import cImg from '../assets/c.png'
 import pythonImg from '../assets/python.png'
 import jsImg from '../assets/js.png'
@@ -16,7 +16,8 @@ import wordImg from '../assets/word.png'
 import excelImg from '../assets/excel.png'
 
 export default function HomePage({ onOpenProject, onOpenExperience, onNavigate }) {
-	const personalProjects = projects.filter((item) => item?.name && item?.description && item?.techStack?.length && item?.status)
+	const personalProjects = projects.filter((item) => item?.slug && item?.name && item?.description && item?.techStack?.length && item?.status)
+	const homepageProjects = personalProjects.slice(0, 2)
 	const currentExperience = experience.filter((item) => item?.jobTitle && item?.company && item?.location && item?.duration && item?.description)
 	const carouselCopies = 3
 	const techIcons = [
@@ -49,9 +50,8 @@ export default function HomePage({ onOpenProject, onOpenExperience, onNavigate }
 		if (!status) return 'project-status'
 
 		const normalizedStatus = status.toLowerCase()
-		if (normalizedStatus === 'active') return 'project-status active'
-		if (normalizedStatus === 'completed') return 'project-status completed'
-		if (normalizedStatus === 'paused') return 'project-status paused'
+		if (normalizedStatus.includes('progress') || normalizedStatus === 'active') return 'project-status in-progress'
+		if (normalizedStatus.includes('complete') || normalizedStatus === 'done') return 'project-status completed'
 
 		return 'project-status'
 	}
@@ -82,9 +82,9 @@ export default function HomePage({ onOpenProject, onOpenExperience, onNavigate }
 		}
 	}
 
-	const handleViewAllClick = (event) => {
+	const handleViewAllClick = (event, path) => {
 		event.preventDefault()
-		if (onNavigate) onNavigate('/experience')
+		if (onNavigate) onNavigate(path)
 	}
 
 	useEffect(() => {
@@ -126,7 +126,7 @@ export default function HomePage({ onOpenProject, onOpenExperience, onNavigate }
 			<section className="experience" id="experience">
 				<div className="section-header">
 					<h2>Experience</h2>
-					<a href={import.meta.env.BASE_URL.replace(/\/$/, '') + '/experience'} onClick={handleViewAllClick} className="view-all">View all →</a>
+					<a href={import.meta.env.BASE_URL.replace(/\/$/, '') + '/experience'} onClick={(event) => handleViewAllClick(event, '/experience')} className="view-all">View all →</a>
 				</div>
 				<div className="experience-grid">
 					{currentExperience.map((exp) => (
@@ -171,9 +171,12 @@ export default function HomePage({ onOpenProject, onOpenExperience, onNavigate }
 			<section className="personal-projects">
 				<div className="section-header">
 					<h2>Personal Projects</h2>
+					{personalProjects.length > 2 ? (
+						<a href={import.meta.env.BASE_URL.replace(/\/$/, '') + '/projects'} onClick={(event) => handleViewAllClick(event, '/projects')} className="view-all">View all →</a>
+					) : null}
 				</div>
 				<div className="project-grid">
-					{personalProjects.map((project) => (
+					{homepageProjects.map((project) => (
 						<article
 							className="project-card project-card-link"
 							key={`${project.name}`}
